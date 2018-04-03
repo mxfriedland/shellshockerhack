@@ -1,6 +1,7 @@
 var aimbotMain = {};
 
 function aimbot() {
+    this.fastbot = false;
 	this.enabled = true;		// if the aimbot is enabled
 	this.shouldlock = false;	// if the aimbot should aim on this frame
 	this.lock = undefined;		// the player the aimbot is locking on to
@@ -45,6 +46,16 @@ aimbot.prototype.keyboardCallbackDown = function(e) {
 			this.lock = this.findPlayer();
 		}
 	}
+	//fastbot ctrl
+	if (e.keyCode == "76") {
+	    if(this.fastbot == false){
+	        this.fastbot = true;
+            this.showMessage("#c9c9ff","Zoom : On");
+        }else{
+	        this.fastbot = false;
+            this.showMessage("#c9c9ff","Zoom : Off");
+        }
+    }
 	if (e.keyCode == "72") {
 		if (this.settings.sortmode == 0) {
 			this.settings.sortmode = 1;
@@ -233,6 +244,10 @@ var readyStateCheckInterval = setInterval(function() {
 		clearInterval(readyStateCheckInterval);
 		aimbotMain = new aimbot();
 		aimbotMain.init();
-		setInterval(function() {aimbotMain.snap();aimbotMain.doAutoShoot();},16);
+		setInterval(function() {
+		    aimbotMain.snap();
+		    aimbotMain.doAutoShoot();
+		    aimbotMain.findPlayer();
+		    },16);
 	}
 }, 10);
