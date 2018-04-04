@@ -109,6 +109,7 @@ aimbot.prototype.keyboardCallbackDown = function(e) {
 
 aimbot.prototype.radar = function(){
     for (var i = 0; i < numPlayers; i++) {
+        var numPlayers = window.players.length;
         lockedplayer = "null";
         distance = 0;
         if (window.players[i] == undefined) {
