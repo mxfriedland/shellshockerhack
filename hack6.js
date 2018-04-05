@@ -7,6 +7,7 @@ function aimbot() {
 	this.shouldlock = false;	// if the aimbot should aim on this frame
 	this.lock = undefined;		// the player the aimbot is locking on to
 	this.autoshoot = false;		// if pistol autoshooting is enabled
+    this.amountofplayers = 0;
 	this.settings = {
 	    radarsort: 0,
 		sortmode: 0,
@@ -167,6 +168,7 @@ aimbot.prototype.getAngleDiff = function(ini,targ) {
 	}
 	return res;
 };
+
 aimbot.prototype.findPlayer = function() {
     if (this.radaron == true){
     	this.radar();
@@ -175,6 +177,7 @@ aimbot.prototype.findPlayer = function() {
             return;
         }
         var numPlayers = window.players.length;
+        this.amountofplayers = numPlayers;
         var angdist = 0;
         var posdist = 0;
         var snapply = undefined;
@@ -232,7 +235,7 @@ aimbot.prototype.findPlayer = function() {
 };
 
 aimbot.prototype.radar = function () {
-    var numPlayers = window.players.length;
+    var numPlayers = this.amountofplayers;
     for (var i = 0; i < numPlayers; i++) {
         lockedplayer = "null";
         distance = 0;
