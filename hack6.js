@@ -45,9 +45,6 @@ aimbot.prototype.init = function () {
     }, false);
     this.showMessage("#e1f7d5", "motd new2");
     console.log("loaded");
-    console.log("Verbosity Prompt (0-3");
-    this.settings.verbose = readline();
-    console.log("Read verbose: " + this.settings.verbose)
 };
 
 
