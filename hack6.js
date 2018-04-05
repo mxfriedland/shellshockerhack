@@ -1,3 +1,4 @@
+//new
 var aimbotMain = {};
 
 function aimbot() {
@@ -40,7 +41,7 @@ aimbot.prototype.init = function () {
     window.addEventListener("mouseup", function (e) {
         aimbotMain.mouseCallbackUp(e);
     }, false);
-    this.showMessage("#e1f7d5", "motd");
+    this.showMessage("#e1f7d5", "motd new");
     console.log("loaded");
 };
 
@@ -244,7 +245,11 @@ aimbot.prototype.findPlayer = function () {
 };
 
 aimbot.prototype.radar = function () {
+    console.log("run radar");
     var numPlayers = this.amountofplayers;
+    var angdist = 0;
+    var posdist = 0;
+    var snapply = undefined;
     for (var i = 0; i < numPlayers; i++) {
         lockedplayer = "null";
         distance = 0;
