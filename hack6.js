@@ -107,61 +107,7 @@ aimbot.prototype.keyboardCallbackDown = function(e) {
     }
 };
 
-aimbot.prototype.radar = function(){
-    var numPlayers = window.players.length;
-    for (var i = 0; i < numPlayers; i++) {
-        lockedplayer = "null";
-        distance = 0;
-        if (window.players[i] == undefined) {
-            continue;
-        }
-        if (window.players[i].id == window.me.id) {
-            continue;
-        }
-        if (window.players[i].name == "Pinecone") {
-            continue;
-        }
-        if (window.players[i].isDead()) {
-            continue;
-        }
-        if (window.gameType == 1) {
-            if (window.players[i].team == window.me.team) {
-                continue;
-            }
-        }
-        if (this.settings.radarsort == 0) {
-            if (posdist == 0) {
-                posdist = this.getDistLength(window.me,window.players[i]);
-                lockedplayer = window.players[i].name
-                distance = this.getDistLength(window.me,window.players[i]);
-            } else if (this.getDistLength(window.me,window.players[i]) < posdist) {
-                posdist = this.getDistLength(window.me,window.players[i]);
-                lockedplayer = window.players[i].name
-                distance = this.getDistLength(window.me,window.players[i]);
-            }
-        } else if (this.settings.radarsort == 1) {
-            angs = this.getAngleDiff(window.me,window.players[i]);
-            compangs = {};
-            compangs.pitch = Math.abs(angs.pitch - window.me.pitch);
-            compangs.yaw = Math.abs(angs.yaw - window.me.viewYaw);
-            // the only 3 lines of code in this that i'm proud of
-            if (compangs.yaw > Math.PI) {
-                compangs.yaw = (Math.PI*2)-compangs.yaw;
-            }
-            if (angdist == 0) {
-                angdist = Math.sqrt(compangs.pitch**2 + compangs.yaw**2);
-                lockedplayer = window.players[i].name
-                distance = this.getDistLength(window.me,window.players[i]);
-            } else if ((Math.sqrt(compangs.pitch**2 + compangs.yaw**2)) < angdist) {
-                angdist = Math.sqrt(compangs.pitch**2 + compangs.yaw**2);
-                lockedplayer = window.players[i].name
-                distance = this.getDistLength(window.me,window.players[i]);
-            }
-        }
-        this.showMessage("#ffbdbd", lockedplayer + " is: " + distance + " units away");
-    }
 
-};
 
 aimbot.prototype.keyboardCallbackUp = function(e) {
 	if (this.settings.togglemode == 1) {
@@ -283,8 +229,64 @@ aimbot.prototype.findPlayer = function() {
     } else {
         return snapply.id;
     }
+};
+
+aimbot.prototype.radar = function () {
+    var numPlayers = window.players.length;
+    for (var i = 0; i < numPlayers; i++) {
+        lockedplayer = "null";
+        distance = 0;
+        if (window.players[i] == undefined) {
+            continue;
+        }
+        if (window.players[i].id == window.me.id) {
+            continue;
+        }
+        if (window.players[i].name == "Pinecone") {
+            continue;
+        }
+        if (window.players[i].isDead()) {
+            continue;
+        }
+        if (window.gameType == 1) {
+            if (window.players[i].team == window.me.team) {
+                continue;
+            }
+        }
+        if (this.settings.radarsort == 0) {
+            if (posdist == 0) {
+                posdist = this.getDistLength(window.me, window.players[i]);
+                lockedplayer = window.players[i].name
+                distance = this.getDistLength(window.me, window.players[i]);
+            } else if (this.getDistLength(window.me, window.players[i]) < posdist) {
+                posdist = this.getDistLength(window.me, window.players[i]);
+                lockedplayer = window.players[i].name
+                distance = this.getDistLength(window.me, window.players[i]);
+            }
+        } else if (this.settings.radarsort == 1) {
+            angs = this.getAngleDiff(window.me, window.players[i]);
+            compangs = {};
+            compangs.pitch = Math.abs(angs.pitch - window.me.pitch);
+            compangs.yaw = Math.abs(angs.yaw - window.me.viewYaw);
+            // the only 3 lines of code in this that i'm proud of
+            if (compangs.yaw > Math.PI) {
+                compangs.yaw = (Math.PI * 2) - compangs.yaw;
+            }
+            if (angdist == 0) {
+                angdist = Math.sqrt(compangs.pitch ** 2 + compangs.yaw ** 2);
+                lockedplayer = window.players[i].name
+                distance = this.getDistLength(window.me, window.players[i]);
+            } else if ((Math.sqrt(compangs.pitch ** 2 + compangs.yaw ** 2)) < angdist) {
+                angdist = Math.sqrt(compangs.pitch ** 2 + compangs.yaw ** 2);
+                lockedplayer = window.players[i].name
+                distance = this.getDistLength(window.me, window.players[i]);
+            }
+        }
+        this.showMessage("#ffbdbd", lockedplayer + " is: " + distance + " units away");
+    }
 
 };
+
 aimbot.prototype.snap = function() {
 	if (aimbotMain.fastbot == true){
         this.showMessage("#e1f7d5","autosnapping to" + window.players[this.lock]);

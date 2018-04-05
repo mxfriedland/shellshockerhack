@@ -132,11 +132,11 @@ aimbot.prototype.radar = function(){
         if (this.settings.radarsort == 0) {
             if (posdist == 0) {
                 posdist = this.getDistLength(window.me,window.players[i]);
-                lockedplayer = window.players[i].name
+                lockedplayer = window.players[i].name;
                 distance = this.getDistLength(window.me,window.players[i]);
             } else if (this.getDistLength(window.me,window.players[i]) < posdist) {
                 posdist = this.getDistLength(window.me,window.players[i]);
-                lockedplayer = window.players[i].name
+                lockedplayer = window.players[i].name;
                 distance = this.getDistLength(window.me,window.players[i]);
             }
         } else if (this.settings.radarsort == 1) {
