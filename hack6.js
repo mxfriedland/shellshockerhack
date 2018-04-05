@@ -33,7 +33,7 @@ aimbot.prototype.init = function() {
 	window.addEventListener("keyup", function(e){aimbotMain.keyboardCallbackUp(e);}, false);
 	window.addEventListener("mousedown", function(e){aimbotMain.mouseCallbackDown(e);}, false);
 	window.addEventListener("mouseup", function(e){aimbotMain.mouseCallbackUp(e);}, false);
-	this.showMessage("#e1f7d5","Maxhack loaded");
+    this.showMessage("#e1f7d5", "motd");
 };
 
 
@@ -292,7 +292,6 @@ aimbot.prototype.radar = function () {
 
 aimbot.prototype.snap = function() {
 	if (aimbotMain.fastbot == true){
-        this.showMessage("#e1f7d5","autosnapping to" + window.players[this.lock]);
         this.lock = this.findPlayer();
 	}
 	if (this.shouldlock == false || this.lock == undefined || window.players[this.lock] == undefined) {
