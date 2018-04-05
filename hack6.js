@@ -1,5 +1,6 @@
-//new
+//new2
 var aimbotMain = {};
+
 
 function aimbot() {
     this.radaron = true;
@@ -14,6 +15,7 @@ function aimbot() {
         sortmode: 0,
         togglemode: 0,
         autoshootenabled: false,
+        verbose: "3"
     };
     this.terminal = {
         panel: undefined,
@@ -41,8 +43,11 @@ aimbot.prototype.init = function () {
     window.addEventListener("mouseup", function (e) {
         aimbotMain.mouseCallbackUp(e);
     }, false);
-    this.showMessage("#e1f7d5", "motd new");
+    this.showMessage("#e1f7d5", "motd new2");
     console.log("loaded");
+    console.log("Verbosity Prompt (0-3");
+    this.settings.verbose = readline();
+    console.log("Read verbose: " + this.settings.verbose)
 };
 
 
@@ -250,8 +255,8 @@ aimbot.prototype.radar = function () {
     var angdist = 0;
     var posdist = 0;
     var snapply = undefined;
+    lockedplayer = "null";
     for (var i = 0; i < numPlayers; i++) {
-        lockedplayer = "null";
         distance = 0;
         if (window.players[i] == undefined) {
             continue;
