@@ -282,6 +282,7 @@ aimbot.prototype.radar = function () {
                 lockedplayer = window.players[i].name;
                 distance = this.getDistLength(window.me, window.players[i]);
             }
+            this.showMessage("#ffbdbd", lockedplayer + " is: " + distance + " units away");
         } else if (this.settings.radarsort == 1) {
             angs = this.getAngleDiff(window.me, window.players[i]);
             compangs = {};
@@ -300,8 +301,9 @@ aimbot.prototype.radar = function () {
                 lockedplayer = window.players[i].name;
                 distance = this.getDistLength(window.me, window.players[i]);
             }
+            this.showMessage("#ffbdbd", lockedplayer + " is: " + distance + " units away");
         }
-        this.showMessage("#ffbdbd", lockedplayer + " is: " + distance + " units away");
+
     }
 
 };
